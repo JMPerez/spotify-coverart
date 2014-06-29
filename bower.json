@@ -1,6 +1,6 @@
 {
   "name": "spotify-coverart",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Polymer Web component for a squared responsive image placeholder",
   "dependencies": {
     "polymer": "~0.2.3"
