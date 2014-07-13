@@ -1,6 +1,6 @@
 # Cover art polymer element
 
-This is an example of a [Polymer Web Component](www.polymer-project.org) that implements a square image placeholder with a list of images sources, so it loads the most suitable one depending on size and pixel density.
+This is an example of a [Polymer Web Component](http://www.polymer-project.org) that implements a square image placeholder with a list of images sources, so it loads the most suitable one depending on size and pixel density.
 
 ## Usage
 
