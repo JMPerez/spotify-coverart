@@ -14,11 +14,50 @@
       }
     </style>
   </head>
-  <body unresolved>
+  <body>
     <h1>Spotify coverart demo</h1>
+    <form>
+        <input type="text" placeholder="Type track name" id="query"/>
+        <input type="submit">
+    </form>
 
-    <spotify-coverart images='[{"height":640,"url":"https://i.scdn.co/image/4ba3d88559683547a61210cffe82349b1094482e","width":480},{"height":300,"url":"https://i.scdn.co/image/23b8e2a3ffa06d001ff77de738b3c89aed02af8e","width":225},{"height":64,"url":"https://i.scdn.co/image/504389979f2fa66a804b7311e5ce634090a608a1","width":48}]'></spotify-coverart>
+    <br/>
 
+    <label for="size">Size of cover art (in percentage)</label>
+    <input type="number" min="0" max="100" id="size" value="100"></input>
+
+    <br/>
+
+    <spotify-coverart></spotify-coverart>
+
+    <script>
+    var coverartPlaceholder = document.querySelector('spotify-coverart');
+    document.forms[0].addEventListener('submit', function(e) {
+        e.preventDefault();
+        var query = document.getElementById('query').value;
+        var req = new XMLHttpRequest();
+        req.open('GET',
+            'https://api.spotify.com/v1/search/?q=' + encodeURIComponent(query) + '&type=track',
+          true);
+        req.onreadystatechange = function() {
+            if (req.readyState === 4 && req.status === 200) {
+                try {
+                    var response = JSON.parse(req.responseText);
+                    var images = response.tracks.items[0].album.images;
+                    coverartPlaceholder.setAttribute('images', JSON.stringify(images));
+                }
+                catch(e) {
+                    console.error(e);
+                }
+            }
+        };
+        req.send(null);
+    }, false);
+
+    document.getElementById('size').addEventListener('change', function(e) {
+        coverartPlaceholder.style.width = parseInt(this.value, 10) + '%';
+    });
+    </script>
   </body>
 
 </html>
