@@ -1,19 +1,25 @@
 {
   "name": "spotify-coverart",
-  "version": "0.0.2",
-  "description": "Polymer Web component for a squared responsive image placeholder",
-  "dependencies": {
-    "polymer": "~0.2.3"
-  },
+  "version": "1.0.0",
   "authors": [
     "José M. Pérez"
   ],
-  "license": "MIT",
+  "description": "Polymer Web component for a squared responsive image placeholder",
   "keywords": [
     "web-component",
     "web-components",
     "polymer",
     "spotify",
     "coverart"
-  ]
+  ],
+  "main": "spotify-coverart.html",
+  "license": "MIT",
+  "homepage": "https://github.com/JMPerez/spotify-coverart/",
+  "ignore": [
+    "**/.*"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#~0.3.3",
+    "polymer-test-tools": "Polymer/polymer-test-tools#~0.3.3"
+  }
 }

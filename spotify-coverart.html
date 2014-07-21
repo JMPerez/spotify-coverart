@@ -1,0 +1,82 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+Element to render the most suitable image depending on available size and pixel density.
+
+##### Example
+
+    <spotify-coverart images='[{"height":640,"url":"large.jpg","width":480},{"height":300,"url":"medium.jpg","width":225},{"height":64,"url":"small.jpg","width":48}]'></spotify-coverart>
+
+@element spotify-coverart
+@blurb Element to render the most suitable image depending on available size and pixel density.
+@status beta
+@homepage https://github.com/JMPerez/spotify-coverart
+-->
+<polymer-element name="spotify-coverart" attributes="images">
+
+  <template>
+
+    <link rel="stylesheet" href="spotify-coverart.css"/>
+
+    <div class="square-placeholder">
+      <div class="image" style="background-size: cover; background-image:url({{ cover }})"></div>
+    </div>
+
+  </template>
+
+  <script>
+
+    var interval = null;
+    Polymer('spotify-coverart', {
+
+      /**
+       * The `images` attribute specifies the set of images, sorted by descending size
+       * Each image is represented with a JSON object containing `width`, `height` and
+       * `url` of the image.
+       *
+       * @attribute images
+       * @type Array<{Object}>
+       * @default []
+       */
+
+      imagesChanged: function () {
+        if (interval) {
+          clearInterval(interval);
+          interval = null;
+        }
+
+        if (this.images) {
+          try {
+            var images = JSON.parse(this.images);
+
+            // todo: once we have loaded a large one maybe it doesn't make sense to try to load
+            // a smaller one, since that incurs in an extra request and the quality won't be
+            // better than the one provided by the larger image
+
+            var findRightImage = function() {
+              var targetWidth = this.offsetWidth * window.devicePixelRatio,
+                  targetHeight = this.offsetHeight * window.devicePixelRatio;
+
+              if (targetWidth === 0 || targetHeight === 0) {
+                return;
+              }
+
+              var cover = images[0].url;
+              for (var i=1; i<images.length; i++) {
+                if (images[i].width >= targetWidth && images[i].width >= targetHeight) {
+                  cover = images[i].url;
+                }
+              }
+              this.cover = cover;
+            }.bind(this);
+            interval = setInterval(findRightImage, 200);
+            findRightImage();
+          } catch (e) {
+            console.error(e);
+          }
+        }
+      }
+    });
+  </script>
+
+</polymer-element>

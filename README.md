@@ -2,13 +2,16 @@
 
 This is an example of a [Polymer Web Component](http://www.polymer-project.org) that implements a square image placeholder with a list of images sources, so it loads the most suitable one depending on size and pixel density.
 
+- [Demo](http://jmperezperez.com/spotify-coverart/spotify-coverart/demo.html)
+- [Documentation](http://jmperezperez.com/spotify-coverart/spotify-coverart/)
+
 ## Usage
 
 You just need to include the polymer platform and this element in the head of
 your html page.
 
 Then, you can start using the `spotify-coverart` element as any other HTML element
-in your page. Set the `images` property to an array of objects containing `width`, 
+in your page. Set the `images` property to an array of objects containing `width`,
 `height` and `url` of the image, sorted by descending size:
 
 ```html
@@ -16,7 +19,7 @@ in your page. Set the `images` property to an array of objects containing `width
 <head>
   <script type="text/javascript" src="bower_components/platform/platform.js"></script>
 
-  <link rel="import" href="bower_components/spotify-coverart/index.html">
+  <link rel="import" href="bower_components/spotify-coverart/spotify-coverart.html">
 </head>
 <body>
   <spotify-coverart images='[{"height":640,"url":"https://i.scdn.co/image/4ba3d88559683547a61210cffe82349b1094482e","width":480},{"height":300,"url":"https://i.scdn.co/image/23b8e2a3ffa06d001ff77de738b3c89aed02af8e","width":225},{"height":64,"url":"https://i.scdn.co/image/504389979f2fa66a804b7311e5ce634090a608a1","width":48}]'></spotify-coverart>
@@ -43,4 +46,4 @@ Then, you only need to navigate to [http://localhost:5000/bower_components/spoti
 ## TODO
 
 - Prevent loading a smaller image if a larger one is already in place.
-- Replace a smaller version with a larger one in a smoother way, waiting for the one to be loaded. 
+- Replace a smaller version with a larger one in a smoother way, waiting for the one to be loaded.
