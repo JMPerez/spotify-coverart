@@ -23,5 +23,15 @@
   },
   "devDependencies": {
     "web-component-tester": "Polymer/web-component-tester#^2.0.0-rc1"
-  }
+  },
+  "_release": "2.0.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v2.0.0",
+    "commit": "109d0b3cf557c4f5aae3036eb1e672169a383464"
+  },
+  "_source": "git://github.com/JMPerez/spotify-coverart.git",
+  "_target": "~2.0.0",
+  "_originalSource": "spotify-coverart",
+  "_direct": true
 }
