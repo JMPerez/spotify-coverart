@@ -12,7 +12,7 @@ Element to render the most suitable image depending on available size and pixel 
 @status beta
 @homepage https://github.com/JMPerez/spotify-coverart
 -->
-<polymer-element name="spotify-coverart" attributes="images">
+<polymer-element name="spotify-coverart" attributes="images, detectSizeChange">
 
   <template>
 
@@ -27,7 +27,7 @@ Element to render the most suitable image depending on available size and pixel 
   <script>
 
     var interval = null;
-    Polymer('spotify-coverart', {
+    Polymer({
 
       /**
        * The `images` attribute specifies the set of images, sorted by descending size
@@ -39,7 +39,17 @@ Element to render the most suitable image depending on available size and pixel 
        * @default []
        */
 
-      imagesChanged: function () {
+      /**
+       * `detectSizeChange` is a property that determines whether the
+       component will be listening for size changes once rendered.
+       *
+       * @property detectSizeChange
+       * @type bool
+       * @default true
+       */
+      detectSizeChange: true,
+
+      ready: function () {
         if (interval) {
           clearInterval(interval);
           interval = null;
@@ -69,7 +79,9 @@ Element to render the most suitable image depending on available size and pixel 
               }
               this.cover = cover;
             }.bind(this);
-            interval = setInterval(findRightImage, 200);
+            if (this.detectSizeChange) {
+              interval = setInterval(findRightImage, 200);
+            }
             findRightImage();
           } catch (e) {
             console.error(e);

@@ -27,6 +27,8 @@ in your page. Set the `images` property to an array of objects containing `width
 </script>
 ```
 
+Each coverart will run a timer periodically to monitor changes in the size of the component. In order to avoid this, use the attribute `detectSizeChange="false"`.
+
 ## Running the example
 
 To launch the example, install the `spotify-coverart` bower component:
@@ -41,7 +43,7 @@ Then launch a web server:
 $ ruby -run -e httpd . -p 5000 # "python -m SimpleHTTPServer 5000" will also do the trick
 ```
 
-Then, you only need to navigate to [http://localhost:5000/bower_components/spotify-coverart/demo.html](http://localhost:5000/bower_components/spotify-coverart/demo.html) from any modern browser.
+Then, you only need to navigate to `http://localhost:5000/spotify-coverart/demo.html` from any modern browser. Note that you need to run the server from the parent folder, not from the `spotify-coverart` folder.
 
 ## TODO
 
